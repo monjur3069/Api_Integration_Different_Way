@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:api_app/example2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'models/postsmodel.dart';
 
 class HomePage extends StatefulWidget {
+  static const String routeName = '/firstexample';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -37,6 +40,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Api Integration'),
+        actions: [
+          IconButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, SecondExample.routeName),
+              icon: Icon(Icons.arrow_forward_outlined))
+        ],
       ),
       body: Column(
         children: [
@@ -63,7 +72,9 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 15),
                                   ),
                                   Text(postList[index].title.toString()),
-                                  SizedBox(height: 5,),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   const Text(
                                     'body',
                                     style: TextStyle(
